@@ -17,10 +17,12 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.2.0**
+Version actuelle : **0.2.1**
 
-- Import express : sur un PC puissant, une vidéo (même de 1 h 30) est utilisable tout de suite
-- Les vidéos MKV d'OBS sont prêtes en quelques secondes, sans être refabriquées
-- La carte graphique aide quand une copie légère est nécessaire
-- Glisser une très grosse vidéo ouvre la fenêtre Importer (pas de copie inutile)
-- Nouveau réglage « Import des vidéos » (clique dans le vide de la ligne de temps pour le voir)
+- Corrigé : un import ne reste plus bloqué « en attente 0 % » pendant qu'une autre vidéo s'analyse
+- Une vidéo est utilisable tout de suite ; la forme du son, le rythme et les miniatures se calculent ensuite en fond, en une seule lecture (2 fois plus rapide)
+- Deux vidéos peuvent se préparer en même temps
+- Si l'outil vidéo se bloque, il est arrêté et une erreur s'affiche (clic droit sur le média → Relancer la préparation)
+- Fermer le logiciel arrête aussi les préparations en cours
+- Musiques MP3, WAV, M4A lues directement, sans conversion
+- Dis « ça bug » à Claude intégré : il lit le journal du logiciel et t'explique
