@@ -17,7 +17,8 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.2.2**
+Version actuelle : **0.2.3**
 
-- Dézoom sans limite : tu peux voir tout ton montage d'un coup, même une vidéo de 1 h 30 ou plus
-- La règle du temps affiche les heures (1:30:00) et se gradue toutes les 10 min, 30 min ou 1 h quand tu dézoomes
+- Le dézoom tient compte de tes vidéos importées : même avec un montage vide, tu peux dézoomer pour voir une vidéo de 1 h 30 en entier
+- Quand tu ajoutes une longue vidéo, la ligne de temps se dézoome toute seule pour la montrer en entier
+- Nouvelle barre de défilement sous la ligne de temps : glisse-la pour te déplacer, ou clique à côté pour avancer d'une page (pas besoin de molette)
