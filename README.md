@@ -17,8 +17,7 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.2.3**
+Version actuelle : **0.2.4**
 
-- Le dézoom tient compte de tes vidéos importées : même avec un montage vide, tu peux dézoomer pour voir une vidéo de 1 h 30 en entier
-- Quand tu ajoutes une longue vidéo, la ligne de temps se dézoome toute seule pour la montrer en entier
-- Nouvelle barre de défilement sous la ligne de temps : glisse-la pour te déplacer, ou clique à côté pour avancer d'une page (pas besoin de molette)
+- Corrigé : la bande verte en haut de l'aperçu (elle n'a jamais été dans la vidéo exportée)
+- Nouvelle option « Aperçu par la carte graphique » dans les réglages (clique dans le vide de la ligne de temps), décochée par défaut
