@@ -17,7 +17,10 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.1.1**
+Version actuelle : **0.2.0**
 
-- Le raccourci Montage est créé sur le bureau au premier lancement
-- Montage.cmd : autre façon de lancer si ton antivirus bloque Montage.vbs
+- Import express : sur un PC puissant, une vidéo (même de 1 h 30) est utilisable tout de suite
+- Les vidéos MKV d'OBS sont prêtes en quelques secondes, sans être refabriquées
+- La carte graphique aide quand une copie légère est nécessaire
+- Glisser une très grosse vidéo ouvre la fenêtre Importer (pas de copie inutile)
+- Nouveau réglage « Import des vidéos » (clique dans le vide de la ligne de temps pour le voir)
