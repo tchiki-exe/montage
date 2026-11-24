@@ -17,7 +17,12 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.2.4**
+Version actuelle : **0.3.0**
 
-- Corrigé : la bande verte en haut de l'aperçu (elle n'a jamais été dans la vidéo exportée)
-- Nouvelle option « Aperçu par la carte graphique » dans les réglages (clique dans le vide de la ligne de temps), décochée par défaut
+- Visionneuse source (comme DaVinci) : double-clic sur une vidéo, marque le passage avec I et O, puis « , » pour l'insérer, « . » pour écraser ou E pour l'ajouter à la fin
+- Moments forts : le logiciel repère les passages où le son s'emballe dans tes longs enregistrements
+- Mini ligne de temps sous le montage : tout ton montage en petit, clique pour t'y déplacer
+- Touches Q et W : coupe avant ou après la tête de lecture et recolle
+- Étalonnage façon DaVinci (ombres, tons moyens, lumières), 6 looks tout faits et filtres LUT .cube (6 fournis, tu peux importer les tiens)
+- Export : volume adapté à TikTok et YouTube (−14 LUFS)
+- Capture d'image en PNG pleine qualité pour tes miniatures (bouton à côté du plein écran)
