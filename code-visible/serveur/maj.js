@@ -64,6 +64,21 @@ function sources(v) {
   return l;
 }
 
+// Signature des mises à jour : chaque version.json est signé (Ed25519) avec une clé secrète qui ne quitte jamais le PC
+// de l'auteur. Même quelqu'un qui prendrait la main sur le serveur de Monnet ou sur GitHub ne pourrait donc pas faire
+// installer sa propre version : sans la bonne signature, la mise à jour est refusée.
+const CLES_MAJ = ['MCowBQYDK2VwAyEAxzyIqZVKkMkwCsHvRCPJIzvfh4WejWlDwRtk3ZjtrpE='];
+if (process.env.MONTAGE_CLE_MAJ_ESSAI) CLES_MAJ.push(process.env.MONTAGE_CLE_MAJ_ESSAI); // essais seulement
+const messageSigne = info => `MONNET-MAJ v1\n${info.version}\n${info.sha256}\n${info.taille}`;
+function signatureValide(info) {
+  if (!info || typeof info.signature !== 'string' || !/^[0-9a-f]{64}$/.test(String(info.sha256 || ''))) return false;
+  return CLES_MAJ.some(cle => {
+    try {
+      return crypto.verify(null, Buffer.from(messageSigne(info)), { key: Buffer.from(cle, 'base64'), format: 'der', type: 'spki' }, Buffer.from(info.signature, 'base64'));
+    } catch (_) { return false; }
+  });
+}
+
 // Regarde s'il existe une version plus récente. Renvoie { actuelle, disponible: info|null }.
 async function verifier(delai = 4000) {
   const v = versionActuelle();
@@ -73,6 +88,7 @@ async function verifier(delai = 4000) {
       const buf = await telecharger(s.version, delai);
       const info = JSON.parse(buf.toString('utf8').replace(/^﻿/, ''));
       if (!/^\d+\.\d+\.\d+$/.test(String(info.version || ''))) throw new Error('version.json invalide');
+      if (!signatureValide(info)) throw new Error('mise à jour non signée par l\'auteur de Monnet : refusée');
       info.source = s.nom;
       derniere = { actuelle: v.version, disponible: comparer(info.version, v.version) > 0 ? info : null, quand: Date.now() };
       return derniere;
@@ -98,14 +114,14 @@ function renommerAvecEssais(de, vers) {
 async function installer(info) {
   const v = versionActuelle();
   if (estSource()) throw new Error('Copie de développement : pas de mise à jour ici');
-  if (!/^[0-9a-f]{64}$/.test(String(info.sha256 || ''))) throw new Error('Mise à jour sans empreinte de sécurité : refusée.');
+  if (!signatureValide(info)) throw new Error('Mise à jour non signée par l\'auteur de Monnet : refusée.');
   // d'abord la source qui a annoncé la version, puis les autres
   const liste = sources(v).sort((a, b) => (a.nom === info.source ? -1 : 0) - (b.nom === info.source ? -1 : 0));
   let zip = null, erreur = null;
   for (const s of liste) {
     try {
       const z = await telecharger(s.zip(info.version), 180000);
-      if (crypto.createHash('sha256').update(z).digest('hex') !== info.sha256) throw new Error('empreinte différente');
+      if (z.length !== info.taille || crypto.createHash('sha256').update(z).digest('hex') !== info.sha256) throw new Error('empreinte différente');
       zip = z;
       break;
     } catch (e) { erreur = e; }
