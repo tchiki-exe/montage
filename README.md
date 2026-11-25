@@ -17,9 +17,8 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.5.1**
+Version actuelle : **0.6.0**
 
-- Monnet IA apprend de plusieurs vidéos d'un coup : choisis-en plein, elle les regarde l'une après l'autre
-- Elle repère maintenant aussi les zooms secs et les secousses (en plus des coupes, flashs et rythme)
-- Quand elle monte, elle met autant d'impacts que dans les vidéos apprises, aux meilleurs endroits
-- Ton propre style compte plus que les vidéos de référence dès que tu exportes tes montages
+- Nouvel onglet Sons : 94 bruitages (whoosh, impacts, boums, montées, glitch, jeu vidéo, drôles…) à écouter d'un clic et à glisser sur la ligne de temps
+- Favoris ★ et « Mes sons » pour garder tes propres bruitages dans tous tes montages
+- Correction : la suppression d'un montage était parfois refusée
