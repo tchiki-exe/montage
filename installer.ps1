@@ -23,7 +23,7 @@ function Verifier($fichier, $attendu) {
 }
 
 try {
-  Write-Host 'Installation de Montage' -ForegroundColor Green
+  Write-Host 'Installation de Monnet' -ForegroundColor Green
   Write-Host "Dossier : $dossier"
   New-Item -ItemType Directory -Force $dossier, $tmp | Out-Null
   if (-not (Get-Command tar.exe -ErrorAction SilentlyContinue)) { throw 'tar.exe introuvable : il faut Windows 10 (2018) ou plus recent.' }
@@ -99,12 +99,12 @@ try {
   $sh = New-Object -ComObject WScript.Shell
   $cibles = @([Environment]::GetFolderPath('Desktop'), (Join-Path ([Environment]::GetFolderPath('Programs')) ''))
   foreach ($d in $cibles) {
-    $l = $sh.CreateShortcut((Join-Path $d 'Montage.lnk'))
+    $l = $sh.CreateShortcut((Join-Path $d 'Monnet.lnk'))
     $l.TargetPath = "$env:WINDIR\System32\wscript.exe"
     $l.Arguments = '"' + (Join-Path $dossier 'Montage.vbs') + '"'
     $l.WorkingDirectory = $dossier
     $l.IconLocation = (Join-Path $dossier 'icone.ico') + ',0'
-    $l.Description = 'Logiciel de montage avec Claude'
+    $l.Description = 'Monnet : studio de montage avec Claude et Monnet IA'
     $l.Save()
   }
 
@@ -119,7 +119,7 @@ try {
     Write-Host "Attention : Claude Code n'est pas installe sur ce PC. Le logiciel marche, mais l'onglet Claude ne pourra pas repondre." -ForegroundColor Yellow
   }
 
-  Etape 'Termine ! Lancement de Montage...'
+  Etape 'Termine ! Lancement de Monnet...'
   Start-Process "$env:WINDIR\System32\wscript.exe" -ArgumentList ('"' + (Join-Path $dossier 'Montage.vbs') + '"')
 } catch {
   Write-Host ''
