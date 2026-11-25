@@ -30,21 +30,19 @@ try {
 
   # 1. Le logiciel
   Etape 'Telechargement du logiciel'
-  # serveur de Monnet d'abord, GitHub en secours ; l'empreinte SHA-256 est toujours verifiee
-  $fv = Join-Path $tmp 'version.json'
+  # Version et empreinte ecrites ici au moment de la publication (ce script vient de GitHub) : le fichier telecharge
+  # (serveur de Monnet d'abord, GitHub en secours) doit avoir exactement cette empreinte. Monnet se met ensuite a jour
+  # tout seul, et chaque mise a jour est signee par son auteur.
+  $info = [pscustomobject]@{ version = '0.8.2'; sha256 = 'd9e5743cc15a3f3c409e6467d81e83f6f07ffe624c76fe459fd73a412eaf9809' }
   $zip = Join-Path $tmp 'montage.zip'
-  $serveur = 'https://141-11-103-42.sslip.io/maj'
   try {
-    Telecharger "$serveur/version.json" $fv
-    $info = Get-Content $fv -Raw -Encoding UTF8 | ConvertFrom-Json
-    Telecharger "$serveur/montage-$($info.version).zip" $zip
+    Telecharger "https://141-11-103-42.sslip.io/maj/montage-$($info.version).zip" $zip
+    Verifier $zip $info.sha256
   } catch {
     Write-Host "Serveur de Monnet indisponible, j'essaie GitHub..." -ForegroundColor Yellow
-    Telecharger "https://github.com/$depot/releases/latest/download/version.json" $fv
-    $info = Get-Content $fv -Raw -Encoding UTF8 | ConvertFrom-Json
     Telecharger "https://github.com/$depot/releases/download/v$($info.version)/montage.zip" $zip
+    Verifier $zip $info.sha256
   }
-  Verifier $zip $info.sha256
   foreach ($e in 'app', 'serveur') { $c = Join-Path $dossier $e; if (Test-Path $c) { Remove-Item -Recurse -Force $c } }
   tar.exe -xmf $zip -C $dossier
   if ($LASTEXITCODE -ne 0) { throw 'Decompression du logiciel impossible' }
