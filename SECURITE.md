@@ -26,7 +26,7 @@ Les fichiers qui touchent à ton PC et à tes données sont lisibles dans le dos
 ## Sur internet (et seulement dans ces cas-là)
 | Quand | Vers où | Quoi |
 |---|---|---|
-| Au lancement (mises à jour) | serveur de Monnet `141-11-103-42.sslip.io` (en France), GitHub en secours | Monnet télécharge la dernière version et vérifie son **empreinte SHA-256** avant de l'installer. Les mises à jour automatiques peuvent être coupées dans les Paramètres. |
+| Au lancement (mises à jour) | serveur de Monnet `141-11-103-42.sslip.io` (en France), GitHub en secours | Monnet télécharge la dernière version. Avant de l'installer, il vérifie la **signature de l'auteur** (Ed25519, faite avec une clé qui ne quitte jamais son PC) et l'**empreinte SHA-256**. Même quelqu'un qui pirate le serveur ou GitHub ne peut donc pas faire installer sa propre version. Les mises à jour automatiques peuvent être coupées dans les Paramètres. |
 | Compteur d'utilisateurs (accueil) | GitHub et le serveur de Monnet | Monnet lit seulement les compteurs publics de téléchargements. |
 | Compte Monnet et sons partagés, si tu t'en sers | serveur de Monnet | Ton nom, ton e-mail et ton mot de passe. Le mot de passe est **chiffré avec scrypt** : illisible, même pour l'auteur. Les sons que tu partages deviennent publics. Tu peux supprimer ton compte et tes sons quand tu veux. |
 | « Continuer avec Google », si tu cliques dessus | Google | La connexion se fait chez Google. Monnet reçoit seulement ton identifiant Google et ton e-mail. |
@@ -44,6 +44,7 @@ Les fichiers qui touchent à ton PC et à tes données sont lisibles dans le dos
   - ce qui est envoyé au serveur (`serveur/communaute.js`) ;
   - le serveur en ligne lui-même, qui gère les comptes et les mots de passe (`serveur-en-ligne/serveur.js`).
 - L'empreinte SHA-256 de chaque version est publiée dans `version.json` et sur la page d'accueil du dépôt. Tu peux la comparer au fichier téléchargé : `Get-FileHash fichier.zip`.
+- Chaque `version.json` est signé. La clé publique qui vérifie la signature est écrite en dur dans `code-visible/serveur/maj.js` (`CLES_MAJ`).
 - Tu peux aussi envoyer le fichier téléchargé sur [VirusTotal](https://www.virustotal.com).
 
 ## Désinstaller
