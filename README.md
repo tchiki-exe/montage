@@ -17,6 +17,7 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.7.1**
+Version actuelle : **0.8.0**
 
-- La bibliothèque de sons partagée est en ligne : onglet Sons → Communauté pour écouter et utiliser les sons des autres, et « Mes sons » → Partager pour envoyer les tiens sous ton pseudo
+- Comptes Monnet : bouton « Se connecter » sur l'accueil et en haut, avec un nom unique rien qu'à toi
+- Partage tes sons dans « Communauté » sous ton nom (il faut un compte, c'est gratuit)
