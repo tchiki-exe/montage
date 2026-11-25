@@ -30,11 +30,20 @@ try {
 
   # 1. Le logiciel
   Etape 'Telechargement du logiciel'
+  # serveur de Monnet d'abord, GitHub en secours ; l'empreinte SHA-256 est toujours verifiee
   $fv = Join-Path $tmp 'version.json'
-  Telecharger "https://github.com/$depot/releases/latest/download/version.json" $fv
-  $info = Get-Content $fv -Raw -Encoding UTF8 | ConvertFrom-Json
   $zip = Join-Path $tmp 'montage.zip'
-  Telecharger "https://github.com/$depot/releases/download/v$($info.version)/montage.zip" $zip
+  $serveur = 'https://141-11-103-42.sslip.io/maj'
+  try {
+    Telecharger "$serveur/version.json" $fv
+    $info = Get-Content $fv -Raw -Encoding UTF8 | ConvertFrom-Json
+    Telecharger "$serveur/montage-$($info.version).zip" $zip
+  } catch {
+    Write-Host "Serveur de Monnet indisponible, j'essaie GitHub..." -ForegroundColor Yellow
+    Telecharger "https://github.com/$depot/releases/latest/download/version.json" $fv
+    $info = Get-Content $fv -Raw -Encoding UTF8 | ConvertFrom-Json
+    Telecharger "https://github.com/$depot/releases/download/v$($info.version)/montage.zip" $zip
+  }
   Verifier $zip $info.sha256
   foreach ($e in 'app', 'serveur') { $c = Join-Path $dossier $e; if (Test-Path $c) { Remove-Item -Recurse -Force $c } }
   tar.exe -xmf $zip -C $dossier
