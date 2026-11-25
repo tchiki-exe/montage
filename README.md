@@ -17,11 +17,9 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.5.0**
+Version actuelle : **0.5.1**
 
-- Nouveau nom : Monnet, avec son logo (un nymphéa) et un thème tout noir
-- Paramètres (bouton roue dentée) : tout se règle, avec une recherche
-- Monnet IA apprend aussi d'un montage que tu aimes (une vidéo déjà montée) ; un style de départ est déjà inclus
-- Sous-titres automatiques : ta voix devient des textes mot par mot, sur ton PC
-- Détourage : enlève le fond derrière toi (facecam)
-- Ralenti fluide : crée les images qui manquent quand tu ralentis
+- Monnet IA apprend de plusieurs vidéos d'un coup : choisis-en plein, elle les regarde l'une après l'autre
+- Elle repère maintenant aussi les zooms secs et les secousses (en plus des coupes, flashs et rythme)
+- Quand elle monte, elle met autant d'impacts que dans les vidéos apprises, aux meilleurs endroits
+- Ton propre style compte plus que les vidéos de référence dès que tu exportes tes montages
