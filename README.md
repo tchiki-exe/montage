@@ -17,11 +17,6 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.7.0**
+Version actuelle : **0.7.1**
 
-- Import ultra rapide : la fenêtre Importer s'ouvre tout de suite, et un fichier glissé (même énorme) est retrouvé sur ton disque sans recopie ; lâche-le n'importe où, même sur l'accueil
-- Voix off : enregistre ta voix au micro pendant que le montage se joue
-- Parle à Monnet IA : explique-lui ce que tu veux (coupe plus vite, que des zooms, ajoute des bruitages…)
-- Sélection au cadre à la souris, effets faciles à retirer (badge fx cliquable, poubelle), nouvelles flèches pour les nombres
-- Couper ne fait plus de petit saut à l'image
-- Compteur d'utilisateurs sur l'accueil, Monnet utilise plus de mémoire pour aller plus vite
+- La bibliothèque de sons partagée est en ligne : onglet Sons → Communauté pour écouter et utiliser les sons des autres, et « Mes sons » → Partager pour envoyer les tiens sous ton pseudo
