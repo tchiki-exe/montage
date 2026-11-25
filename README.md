@@ -1,6 +1,6 @@
-# Montage
+# Monnet
 
-Logiciel de montage vidéo avec Claude intégré.
+Studio de montage vidéo avec Claude et Monnet IA intégrés.
 
 ## Installer sur un PC Windows
 
@@ -17,9 +17,11 @@ Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tchiki-exe/montage/main/installer.ps1 | iex"
 ```
 
-Version actuelle : **0.4.0**
+Version actuelle : **0.5.0**
 
-- Nouveau : Monnet IA (onglet à droite) apprend ton style de montage à chaque export, uniquement sur ton PC
-- Bouton « Monter sur la musique » : Monnet IA coupe sur le rythme, pioche les moments forts de tes vidéos et ajoute impacts et transitions, à ta façon
-- Rythme au choix : comme moi, plus calme ou plus nerveux
-- Tu peux désactiver l'apprentissage ou faire oublier ton style quand tu veux
+- Nouveau nom : Monnet, avec son logo (un nymphéa) et un thème tout noir
+- Paramètres (bouton roue dentée) : tout se règle, avec une recherche
+- Monnet IA apprend aussi d'un montage que tu aimes (une vidéo déjà montée) ; un style de départ est déjà inclus
+- Sous-titres automatiques : ta voix devient des textes mot par mot, sur ton PC
+- Détourage : enlève le fond derrière toi (facecam)
+- Ralenti fluide : crée les images qui manquent quand tu ralentis
