@@ -203,10 +203,14 @@ const serveur = http.createServer(async (req, res) => {
       return json(res, 200, { telechargements: telechargementsMaj });
     }
     let mm = /^\/maj\/([A-Za-z0-9][A-Za-z0-9._-]{0,80})$/.exec(p);
-    if (req.method === 'GET' && mm && /\.(json|zip)$/.test(mm[1])) {
+    if ((req.method === 'GET' || req.method === 'HEAD') && mm && /\.(json|zip)$/.test(mm[1])) {
       const f = path.join(DOSSIER_MAJ, mm[1]);
       let st;
       try { st = fs.statSync(f); } catch (_) { res.writeHead(404); return res.end(); }
+      if (req.method === 'HEAD') { // (curl -I, outils de vérification) : en-têtes seulement, pas compté
+        res.writeHead(200, { 'Content-Type': mm[1].endsWith('.zip') ? 'application/zip' : 'application/json; charset=utf-8', 'Content-Length': st.size });
+        return res.end();
+      }
       if (mm[1].endsWith('.zip') && limite('maj:' + ip + ':' + mm[1], 1, 86400000)) {
         telechargementsMaj[mm[1]] = (telechargementsMaj[mm[1]] || 0) + 1;
         sauver('maj-stats.json');
