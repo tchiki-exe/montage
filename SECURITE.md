@@ -12,7 +12,8 @@ Les fichiers qui touchent à ton PC et à tes données sont lisibles dans le dos
 
 ## Sur ton PC
 - **Le moteur :** Node.js (le programme officiel de nodejs.org) fait tourner un petit serveur, joignable **uniquement depuis ton PC** (adresse 127.0.0.1). À chaque lancement, il est protégé par un code secret tiré au hasard. Personne sur ton réseau ni sur internet ne peut s'y connecter.
-- **La fenêtre :** pour l'instant, c'est Microsoft Edge en mode application, avec un profil à part rangé dans le dossier de Monnet.
+- **La fenêtre :** `Monnet.exe` (code source : `code-visible/exe/Monnet.cs`). Elle affiche Monnet avec WebView2, le moteur d'affichage de Microsoft déjà présent dans Windows, et range son profil dans le dossier de Monnet. Elle ne demande jamais les droits administrateur. Au premier lancement, elle ajoute l'icône « Monnet » sur le bureau et dans le menu Démarrer. Sur un vieux Windows sans WebView2, Monnet s'ouvre dans Edge.
+- **`Monnet.exe` n'est pas signé** par un certificat payant. Windows peut donc afficher « Windows a protégé votre ordinateur » la première fois.
 - **Les programmes que Monnet lance :**
   - `ffmpeg` / `ffprobe` : lire et fabriquer les vidéos ;
   - PowerShell : seulement pour afficher les fenêtres Windows « Ouvrir » et « Choisir un dossier » (voir `code-visible/serveur/fenetres.js`) ;
@@ -38,7 +39,7 @@ Les fichiers qui touchent à ton PC et à tes données sont lisibles dans le dos
 ## Vérifier toi-même
 - Lis les fichiers de [`code-visible`](code-visible) :
   - l'installation (`installer.ps1`) ;
-  - le lancement (`Montage.vbs`, `Montage.cmd`) ;
+  - la fenêtre (`exe/Monnet.cs`) et le lancement (`Montage.vbs`, `Montage.cmd`) ;
   - les mises à jour (`serveur/maj.js`) ;
   - les fenêtres Windows (`serveur/fenetres.js`) ;
   - ce qui est envoyé au serveur (`serveur/communaute.js`) ;
@@ -48,7 +49,7 @@ Les fichiers qui touchent à ton PC et à tes données sont lisibles dans le dos
 - Tu peux aussi envoyer le fichier téléchargé sur [VirusTotal](https://www.virustotal.com).
 
 ## Désinstaller
-Supprime le dossier de Monnet et son raccourci. Pour effacer ton compte en ligne : dans Monnet, ton compte → « Supprimer mon compte ».
+Supprime le dossier de Monnet et ses icônes (bureau et menu Démarrer). Si tu veux garder tes montages, mets d'abord de côté le dossier `projets`. Pour effacer ton compte en ligne : dans Monnet, ton compte → « Supprimer mon compte ».
 
 ---
 © 2026 luunox. Tous droits réservés. Monnet est gratuit mais **ce n'est pas un logiciel libre**. Le code de `code-visible` est montré pour être vérifié, pas pour être réutilisé : voir [LICENSE](LICENSE).
