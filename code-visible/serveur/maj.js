@@ -11,7 +11,8 @@ const { RACINE, lireJson, ecrireJson, executer } = require('./outils');
 const FICHIER_VERSION = path.join(RACINE, 'version.json');
 const FICHIER_REGLAGES = path.join(RACINE, 'reglages.json');
 // ce qu'une mise à jour remplace
-const ELEMENTS = ['app', 'serveur', 'Montage.vbs', 'Montage.cmd', 'icone.ico', 'LISEZMOI.txt', 'LICENCE.txt', 'version.json'];
+const ELEMENTS = ['app', 'serveur', 'Montage.vbs', 'Montage.cmd', 'icone.ico', 'LISEZMOI.txt', 'LICENCE.txt', 'version.json',
+  'Monnet.exe', 'Microsoft.Web.WebView2.Core.dll', 'Microsoft.Web.WebView2.WinForms.dll', 'WebView2Loader.dll'];
 
 function versionActuelle() {
   return lireJson(FICHIER_VERSION, { version: '0.0.0', depot: '', notes: '' });
@@ -138,8 +139,12 @@ async function installer(info) {
   for (const e of ['app', 'serveur', 'version.json']) {
     if (!fs.existsSync(path.join(contenu, e))) throw new Error('Mise à jour incomplète (il manque ' + e + ')');
   }
-  const ancien = path.join(RACINE, '.ancienne-version');
-  fs.rmSync(ancien, { recursive: true, force: true });
+  // (la fenêtre Monnet.exe peut encore tourner depuis l'ancienne version : si ce dossier est occupé, on en prend un autre)
+  let ancien = path.join(RACINE, '.ancienne-version');
+  try { fs.rmSync(ancien, { recursive: true, force: true }); } catch (_) { ancien = path.join(RACINE, '.ancienne-version-' + Date.now()); }
+  for (const n of fs.readdirSync(RACINE)) {
+    if (/^\.ancienne-version-\d+$/.test(n) && path.join(RACINE, n) !== ancien) { try { fs.rmSync(path.join(RACINE, n), { recursive: true, force: true }); } catch (_) { /* encore occupé */ } }
+  }
   fs.mkdirSync(ancien, { recursive: true });
   const deplaces = [];
   const poses = [];
