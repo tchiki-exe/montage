@@ -6,12 +6,12 @@ Studio de montage vidéo **gratuit** pour Windows, avec Claude et Monnet IA int�
 
 ## Installer sur un PC Windows
 
-1. Télécharge le dossier complet : **[Monnet-installation.zip](https://141-11-103-42.sslip.io/maj/Monnet-installation.zip)**
-2. Clic droit sur le fichier téléchargé → **Extraire tout…** → choisis où le mettre (par exemple Documents) → **Extraire**.
-3. Ouvre le dossier **Montage** et double-clique sur **Montage.vbs**. Une icône Monnet est ajoutée sur le bureau.
-   (Si Montage.vbs est bloqué, double-clique sur **Montage.cmd** et laisse la fenêtre noire ouverte.)
+1. Télécharge **[Monnet-installation.zip](https://141-11-103-42.sslip.io/maj/Monnet-installation.zip)** (environ 110 Mo).
+2. Clic droit sur le fichier → **Extraire tout…** → choisis où le mettre (par exemple Documents) → **Extraire**.
+3. Dans le dossier **Montage**, double-clique sur **Monnet.exe**. Au premier lancement, Monnet ajoute son icône sur le bureau et dans le menu Démarrer.
+   La première fois, Windows peut afficher « Windows a protégé votre ordinateur » : Monnet est un petit logiciel indépendant, pas encore signé par un certificat payant. Clique sur **Informations complémentaires** puis **Exécuter quand même**.
 
-Ensuite le logiciel se met à jour tout seul (ça se règle dans ses Paramètres).
+Ensuite Monnet se met à jour tout seul. Pas besoin d'être administrateur. Pour le désinstaller : supprime le dossier **Montage** et l'icône (garde le dossier **projets** si tu veux tes montages).
 
 Autre méthode (si ton antivirus la laisse passer) : touches Windows + R, puis :
 
@@ -24,12 +24,13 @@ powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/tch
 Tout est expliqué dans **[SECURITE.md](SECURITE.md)** : ce que Monnet fait sur ton PC, ce qu'il envoie sur internet (et ce qu'il n'envoie jamais), et comment le vérifier.
 Les fichiers qui touchent à ton PC et à tes données sont lisibles dans **[code-visible](code-visible)** : installation, lancement, mises à jour, fenêtres Windows, connexion au serveur, et le serveur en ligne qui gère les comptes.
 
-## Version actuelle : 0.8.2
+## Version actuelle : 0.9.0
 
-- Mises à jour signées : Monnet refuse toute version qui n'est pas signée par son auteur (même si quelqu'un pirate le serveur)
+- Monnet devient un vrai logiciel : sa propre fenêtre (Monnet.exe) et son icône, plus de fenêtre Edge
+- Installation plus simple : extraire le dossier puis double-clic sur Monnet.exe (il crée ses icônes tout seul)
 
-Empreinte SHA-256 de `montage-0.8.2.zip` : `d9e5743cc15a3f3c409e6467d81e83f6f07ffe624c76fe459fd73a412eaf9809`
+Empreinte SHA-256 de `montage-0.9.0.zip` : `144cbc22f3579130c7a20771bbe9b1dfd41c474ac72c1390aef40c538d649de1`
 
-Empreinte SHA-256 de `Monnet-installation.zip` : `a175ae84aab3871c92532cbca26647aff74cd2253a35151beff570674513a6c4` (vérifie avec `Get-FileHash Monnet-installation.zip`)
+Empreinte SHA-256 de `Monnet-installation.zip` : `c26b0714251f71043b19d5afdd62619d0b64a91094808462d450641c978ebbd2` (vérifie avec `Get-FileHash Monnet-installation.zip`)
 
 Chaque mise à jour est signée : Monnet refuse toute version qui n'est pas signée par son auteur.
